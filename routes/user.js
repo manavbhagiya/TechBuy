@@ -7,13 +7,13 @@ var csrfProtection = crsf();
 router.use(csrfProtection);
 
 router.get('/profile', isLoggedIn, function (req, res, next) {
-    res.render('user/profile');
+    res.render('user/profile', {title: 'TechBuy'});
 });
 
 router.get('/logout', isLoggedIn, function(req, res, next) {
     req.logout(function(err) {
       if (err) { return next(err); }
-      res.redirect('/');
+      res.redirect('/', {title: 'TechBuy'});
     });
   });
 
@@ -23,7 +23,7 @@ router.use('/', notLoggedIn, function (req, res, next) {
 
 router.get('/signup', function (req, res, next) {
     var messages = req.flash('error');
-    res.render('user/signup', { csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0 });
+    res.render('user/signup', { title: 'TechBuy', csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0 });
 });
 
 router.post('/signup', passport.authenticate('local.signup', {
@@ -44,7 +44,7 @@ router.post('/signup', passport.authenticate('local.signup', {
 
 router.get('/signin', function (req, res, next) {
     var messages = req.flash('error');
-    res.render('user/signin', { csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0 });
+    res.render('user/signin', { title: 'TechBuy', csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0 });
 });
 
 router.post('/signin', passport.authenticate('local.signin', {

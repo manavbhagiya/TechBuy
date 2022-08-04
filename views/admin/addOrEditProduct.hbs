@@ -273,12 +273,11 @@
             width: 100%;
             padding: 20px;
             display: grid;
-            grid-template-columns: 2fr 1fr;
             grid-gap: 30px;
             margin-top: 10px;
         }
 
-        .details .recentOrders {
+        .details .Products {
             position: relative;
             display: grid;
             background: var(--white);
@@ -297,7 +296,7 @@
             color: var(--red);
         }
 
-        .btn {
+        .header-btn {
             position: relative;
             padding: 5px 10px;
             background: var(--red);
@@ -315,34 +314,20 @@
             font-weight: 600;
         }
 
-        .details .recentOrders table tr {
+        .details .Products table tr {
             color: var(--black1);
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
-        .details .recentOrders table tr:last-child {
+        .details .Products table tr:last-child {
             border-bottom: none;
         }
 
-        .details .recentOrders table tbody tr:hover {
-            background: var(--red);
-            color: var(--white);
-        }
-
-        .details .recentOrders table tr td {
+        .details .Products table tr td {
             padding: 10px;
         }
 
-        .recentCustomers {
-            position: relative;
-            display: grid;
-            padding: 20px;
-            background: var(--white);
-            box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-            border-radius: 20px;
-        }
-
-        .recentCustomers .imgBx {
+        .details .Products .imgBx {
             position: relative;
             width: 40px;
             height: 40px;
@@ -350,41 +335,13 @@
             overflow: hidden;
         }
 
-        .recentCustomers .imgBx img {
+        .details .Products .imgBx img {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        .recentCustomers table tr:hover {
-            background: var(--red);
-            color: var(--white);
-        }
-
-        .recentCustomers table tr td {
-            padding: 12px 10px;
-        }
-
-        .recentCustomers table tr td h4 {
-            font-size: 16px;
-            font-weight: 500;
-            line-height: 1.2em;
-        }
-
-        .recentCustomers table tr:hover td h4 {
-            color: var(--white);
-        }
-
-        .recentCustomers table tr td span {
-            font-size: 14px;
-            color: var(--black2);
-        }
-
-        .recentCustomers table tr:hover td span {
-            color: var(--white);
         }
 
         /* Responsive Design */
@@ -417,7 +374,7 @@
                 grid-template-columns: repeat(1, 1fr);
             }
 
-            .recentOrders {
+            .Products {
                 overflow-x: auto;
             }
         }
@@ -483,8 +440,8 @@
                     <span class="title">TechBuy</span>
                 </a>
             </li>
-            <li class="active">
-                <a href="/admin/dashboard">
+            <li>
+                <a href="/admin">
                     <span class="icon">
                         <ion-icon name="home-outline"></ion-icon>
                     </span>
@@ -499,7 +456,7 @@
                     <span class="title">Customers</span>
                 </a>
             </li>
-            <li>
+            <li class="active">
                 <a href="/admin/products">
                     <span class="icon">
                         <ion-icon name="bag-outline"></ion-icon>
@@ -516,7 +473,7 @@
                 </a>
             </li>
             <li>
-                <a href="/admin/logout">
+                <a href="">
                     <span class="icon">
                         <ion-icon name="log-out-outline"></ion-icon>
                     </span>
@@ -537,74 +494,40 @@
                 <img src="../images/user.jpg" alt="">
             </div>
         </div>
-        {{!-- card --}}
-        <div class="cardBox">
-            <div class="card">
-                <div>
-                    <div class="numbers">1,504</div>
-                    <div class="cardName">Daily Views</div>
-                </div>
-                <div class="iconBx">
-                    <ion-icon name="eye-outline"></ion-icon>
-                </div>
-            </div>
-            <div class="card">
-                <div>
-                    <div class="numbers">80</div>
-                    <div class="cardName">Sales</div>
-                </div>
-                <div class="iconBx">
-                    <ion-icon name="cart-outline"></ion-icon>
-                </div>
-            </div>
-            <div class="card">
-                <div>
-                    <div class="numbers">284</div>
-                    <div class="cardName">Comments</div>
-                </div>
-                <div class="iconBx">
-                    <ion-icon name="chatbubbles-outline"></ion-icon>
-                </div>
-            </div>
-        </div>
         {{!-- data list --}}
         <div class="details">
-            <div class="recentOrders">
+            <div class="Products">
                 <div class="cardHeader">
-                    <h2>Recent Orders</h2>
-                    <a href="/admin/orders" class="btn">View All</a>
+                    <h2>{{viewTitle}}</h2>
                 </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>Name</td>
-                            <td>Product</td>
-                            <td>Price</td>
-                            <td>Quantity</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Manav Bhagiya</td>
-                            <td>Apple Mobile</td>
-                            <td>$1200</td>
-                            <td>2</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            {{!-- New Customers --}}
-            <div class="recentCustomers">
-                <div class="cardHeader">
-                    <h2>Recent Customers</h2>
-                </div>
-                <table>
-                    <tr>
-                        <td>
-                            <h4>David<br><span>Italy</span></h4>
-                        </td>
-                    </tr>
-                </table>
+                <form action="/admin/addOrEditProduct" method="POST">
+                    <input type="hidden" name="_id" value="{{products._id}}">
+                    <div class="form-group">
+                        <label for="ProductTitle">Product Title</label>
+                        <input type="text" class="form-control" value="{{products.title}}" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ProductDescription">Product Description</label>
+                        <input type="text" class="form-control" value="{{products.description}}" name="description" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ProductPrice">Product Price</label>
+                        <input type="text" class="form-control" value="{{products.price}}" name="price" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ProductCategory">Category</label>
+                        <select class="form-control" id="ProductCategory" name="category">
+                            <option value="Laptops">Laptops</option>
+                            <option value="Desktops">Desktops</option>
+                            <option value="Accessories">Accessories</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ProductImage">Image Source Link</label>
+                        <input type="text" class="form-control" value="{{products.image}}" name="image" required>
+                    </div>
+                    <button type="submit" class="header-btn">Submit</button>
+                </form>
             </div>
         </div>
     </div>

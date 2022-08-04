@@ -1041,6 +1041,8 @@ textarea.input {
   z-index: 2;
 }
 
+
+
 .product .add-to-cart-btn {
   position: relative;
   border: 2px solid transparent;
@@ -1051,6 +1053,16 @@ textarea.input {
   text-transform: uppercase;
   font-weight: 700;
   border-radius: 40px;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+.product .add-to-cart-btn a {
+  position: relative;
+  color: #FFF;
+  left: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
 }
@@ -1396,6 +1408,12 @@ textarea.input {
 	Product view
 \*----------------------------*/
 
+#product-main-img img
+{
+  width: 100%;
+  height: auto;
+}
+
 #product-main-img .slick-prev {
   -webkit-transform: translateX(-15px);
   -ms-transform: translateX(-15px);
@@ -1545,6 +1563,23 @@ textarea.input {
   text-transform: uppercase;
   font-weight: 700;
   border-radius: 40px;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+.product-details .add-to-cart a {
+  position: relative;
+  color: #FFF;
+  text-transform: uppercase;
+  font-weight: 700;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+.product-details .add-to-cart:hover a {
+  position: relative;
+  color: #D10024;
+  text-transform: uppercase;
+  font-weight: 700;
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
 }
@@ -2134,6 +2169,16 @@ textarea.input {
 .custom-dots .slick-dots {
   position: static;
   margin: 15px 0px;
+}
+
+/*=========================================================
+	ADITIONAL STYLING
+===========================================================*/
+
+.list-group-item .imgBx
+{
+  width: 40px;
+  height: 40px;
 }
 
 /*=========================================================
